@@ -39,8 +39,36 @@ Available via CDN
  - HTTP client library:
    * [Axios](https://unpkg.com/axios/dist/axios.min.js)
    
-
-
+ - Lifecycle of a View
+    
+    1. new Vue()
+    2. creation:
+        a. beforeCreate
+        b. Initialize State: Load properties, data and watchers
+        c. created(signal)
+    3. mounting: Compile Template: inserting into the DOM
+        a. beforeMount
+        b. Create VirtualDOM
+        c. mounted(signal)
+    4. updating: Listen for Data Changes: 
+        a. beforeUpdate
+        b. Re-Render Virtual DOM
+        c. updated(signal)
+    5. destroy:
+        a. beforeDestroy
+        b. TearDown VirtualDOM
+        c. destroy(signal)
+        
+    
+        
+    5. destroy
+    
+    each of them comes with two hooks, just like the concept of resty/nginx
+     `before`/stage/`after`
+     
+     
+     
+     
 == Acronyms
 
  - DOM: Document Object Model
