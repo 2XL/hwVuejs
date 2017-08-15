@@ -19,6 +19,10 @@
  
  - Virtual DOM
     
+ - Runtime Sandbox
+    Global Variables
+        - that are whitelisted can't be used in expressions
+        - the popular $ used in jQ can't be used in Vue expressions
 
 == Introduction    
 
@@ -89,34 +93,35 @@ Available via CDN
  - Binding Text
     Semantic syntax
         Use double curly braces {{ ... }} Often reffered as mustaches
-        ```html
-        
-        <h2>Welcome to {{ appName } - {{ appVersion }}</h2> 
-        
-        ```
+```html
+
+<h2>Welcome to {{ appName } - {{ appVersion }}</h2> 
+
+```
     Declarative syntax
         All baked-in directives begin with "v-"
-        ```html
-        v-text: Interpolation of property value as an HTML element's text
-        <h2 v-text="appName"></h2>
-        ```
+```html
+v-text: Interpolation of property value as an HTML element's text
+<h2 v-text="appName"></h2>
+```
      
     One-time bindings
         Improve performance on-time load, skip binding updating watcher
-        ```html
-        v-once: Does not register watcher
-        <h2 v-once>{{ appName }}</h2>
-        ```
+```html
+v-once: Does not register watcher
+<h2 v-once>{{ appName }}</h2>
+```
+
  - Binding HTML
      Suggestion:
         never put html into your data! `they will be rendered as raw data`
      
      Usage:
      
-        ```html
-        v-html: Updates the innerHTML property
-         <h2 v-html="appName"></h2>
-        ```
+```html
+v-html: Updates the innerHTML property
+ <h2 v-html="appName"></h2>
+```
         
      Rules:
         Can't nest bindings
@@ -128,70 +133,87 @@ Available via CDN
         
      Usage:
      
-        ```html
-        v-bind: Bind data property values to HTML attrs
-        <img alt="Growler" v-bind:src="appLogo" style="height:36px;" />
-        or
-        <img alt="Growler" :src="appLogo" style="height:36px;" />
-                
-        ```
+```html
+v-bind: Bind data property values to HTML attrs
+<img alt="Growler" v-bind:src="appLogo" style="height:36px;" />
+or
+<img alt="Growler" :src="appLogo" style="height:36px;" />
+        
+```
+
  - Binding to CSS Properties
      Suggestion:
         From a JS Object
             - Each property name must be the name of a CSS property
             - The value can be a property name or a static value
-            ```html
-            <h2 v-bind:sytle="{ color:appColor }"> {{ appName }} </h2>
-            ```
+```html
+<h2 v-bind:sytle="{ color:appColor }"> {{ appName }} </h2>
+```
+
         From a JS Array
             - Binding to CSS property names with dashes (from `font-family` into `fontFamily`)
             
-            ```html
-            <h2 v-bind:style="{
-            color: appColor,
-            fontFamily: appFontFamily,
-            margin: 0
-            }"></h2>
-            
-            ```   
+```html
+<h2 v-bind:style="{
+color: appColor,
+fontFamily: appFontFamily,
+margin: 0
+}"></h2>
+
+```   
             or
             
-            ```html
-            <h2 v-bind:style="appStyle"></h2>
-            ```
+```html
+<h2 v-bind:style="appStyle"></h2>
+```
             or : the latest will override the previus setting
-            ```html
-            <h2 v-bind:style="[appStyleA, appStyleB]"></h2> 
+```html
+<h2 v-bind:style="[appStyleA, appStyleB]"></h2> 
 
-            ```
+```
 
 - Binding to CSS Classes 
      Suggestion: 
         define the css and lookup them with class tag
         
         
-        ```html
-        <style>
-            .classA {
-                font-family: 'Verdana'
-            }
-            .classB {
-                font-family: 'Arial'
-            }
-        </style>
-        <h2 v-text="appName"
-            v-bind:class="[classA, classB]"></h2>
-        ```
+```html
+<style>
+    .classA {
+        font-family: 'Verdana'
+    }
+    .classB {
+        font-family: 'Arial'
+    }
+</style>
+<h2 v-text="appName"
+    v-bind:class="[classA, classB]"></h2>
+```
         or
-        ```html
-        <h2 v-text="appName"
-                    v-bind:class="{
-                    'classA': true,
-                    'classB': true}"></h2>
-                
-        ```
+```html
+<h2 v-text="appName"
+            v-bind:class="{
+            'classA': true,
+            'classB': true}"></h2>
         
-     
+```
+        
+- Binding with JS expressions       
+     An expression is a type of statement
+     JS Statement: A line of code that produces a value
+        
+```js
+var isLocal = location.host.includes('localhost');
+```
+        
+```html
+<h2 v-text="appName"
+            v-bind:style="{
+            color:isOnline? '#FF6A00' : '#000',
+            'classB': true}"></h2>
+            
+```
+
   
      
 == Acronyms
