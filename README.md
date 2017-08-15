@@ -36,11 +36,13 @@ Available via CDN
 
 
 ```
-
-
+ - HTTP client library:
+   * [Axios](https://unpkg.com/axios/dist/axios.min.js)
+   
 
 
 == Acronyms
 
  - DOM: Document Object Model
- - CDN: Content Delivery Network 
+ - CDN: Content Delivery Network
+ - HTTP: 
