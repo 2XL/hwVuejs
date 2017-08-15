@@ -39,7 +39,7 @@ Available via CDN
  - HTTP client library:
    * [Axios](https://unpkg.com/axios/dist/axios.min.js)
    
- - Lifecycle of a View
+ - Lifecycle of a View:
     
     1. new Vue()
     2. creation:
@@ -58,14 +58,16 @@ Available via CDN
         a. beforeDestroy
         b. TearDown VirtualDOM
         c. destroy(signal)
-        
-    
-        
-    5. destroy
-    
+           
     each of them comes with two hooks, just like the concept of resty/nginx
      `before`/stage/`after`
-     
+  
+ - Templates:
+    Created with HTML
+    HTML spec compliant
+    Defining template DATA
+    Binding content to a template
+    Using JS expressions
      
      
      
@@ -74,3 +76,5 @@ Available via CDN
  - DOM: Document Object Model
  - CDN: Content Delivery Network
  - HTTP: 
+ - POJO: Plain Old JavaScript Object
+ 
