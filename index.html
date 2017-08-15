@@ -4,8 +4,11 @@
 </head>
 <body>
 <div id="growler">
-    <h2>{{ appName }}</h2>
+    <h2 v-bind:style="{ color:appColor }">{{ appName }}</h2>
     <h3 v-once>{{ appName }}</h3>
+    <h4 v-html="appLink"></h4>
+    <img alt="Growler" :src="appLogo" style="height:36px;" />
+    <img alt="Growler" v-bind:src="appLogo" style="height:36px;" />
 
 </div>
 <script type="text/javascript" src="https://unpkg.com/vue"></script>
@@ -16,7 +19,26 @@
         el: '#growler', // css selector
         // el: document.getElementById('growler'),
         data: {
-            appName: 'Growler'
+            appName: 'Growler',
+            appLink: '<a href="https://google.es">ASDF</a>',
+            appLogo: 'https://www.baidu.com/img/bd_logo1.png',
+            appColor: '#FF6A00',
+            appFontFamily: 'Arial',
+            appStyle: {
+                color: '#FF6A00',
+                fontFamily: 'Verdana',
+                margin: 0
+            },
+            appStyleA: {
+                color: '#FF6A00',
+                fontFamily: 'Verdana',
+                margin: 0
+            },
+            appStyleB: {
+                color: '#FF6A00',
+                fontFamily: 'Verdana',
+                margin: 0
+            }
         }
     });
     var iteration = 10;

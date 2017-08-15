@@ -104,10 +104,95 @@ Available via CDN
     One-time bindings
         Improve performance on-time load, skip binding updating watcher
         ```html
+        v-once: Does not register watcher
         <h2 v-once>{{ appName }}</h2>
         ```
+ - Binding HTML
+     Suggestion:
+        never put html into your data! `they will be rendered as raw data`
      
+     Usage:
      
+        ```html
+        v-html: Updates the innerHTML property
+         <h2 v-html="appName"></h2>
+        ```
+        
+     Rules:
+        Can't nest bindings
+        Only bind to HTML you trust
+  
+ - Binding HTML Attr
+     Suggestion:
+        Designed to bind to HTML attrs
+        
+     Usage:
+     
+        ```html
+        v-bind: Bind data property values to HTML attrs
+        <img alt="Growler" v-bind:src="appLogo" style="height:36px;" />
+        or
+        <img alt="Growler" :src="appLogo" style="height:36px;" />
+                
+        ```
+ - Binding to CSS Properties
+     Suggestion:
+        From a JS Object
+            - Each property name must be the name of a CSS property
+            - The value can be a property name or a static value
+            ```html
+            <h2 v-bind:sytle="{ color:appColor }"> {{ appName }} </h2>
+            ```
+        From a JS Array
+            - Binding to CSS property names with dashes (from `font-family` into `fontFamily`)
+            
+            ```html
+            <h2 v-bind:style="{
+            color: appColor,
+            fontFamily: appFontFamily,
+            margin: 0
+            }"></h2>
+            
+            ```   
+            or
+            
+            ```html
+            <h2 v-bind:style="appStyle"></h2>
+            ```
+            or : the latest will override the previus setting
+            ```html
+            <h2 v-bind:style="[appStyleA, appStyleB]"></h2> 
+
+            ```
+
+- Binding to CSS Classes 
+     Suggestion: 
+        define the css and lookup them with class tag
+        
+        
+        ```html
+        <style>
+            .classA {
+                font-family: 'Verdana'
+            }
+            .classB {
+                font-family: 'Arial'
+            }
+        </style>
+        <h2 v-text="appName"
+            v-bind:class="[classA, classB]"></h2>
+        ```
+        or
+        ```html
+        <h2 v-text="appName"
+                    v-bind:class="{
+                    'classA': true,
+                    'classB': true}"></h2>
+                
+        ```
+        
+     
+  
      
 == Acronyms
 
