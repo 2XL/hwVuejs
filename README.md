@@ -69,6 +69,22 @@ Available via CDN
     Binding content to a template
     Using JS expressions
      
+ - Naming Conventions:
+    
+    1. Letter, Digits, Dollar Signs and Underscores
+    2. Start with a letter
+    3. Case-sensitive
+    4. Reserved words cannot be used
+ 
+ - Property Values
+    
+    Native Raw Allowed:
+        str, int, date, list
+    Not Native Objects
+        Number
+        String
+        Date
+        Array
      
      
 == Acronyms
