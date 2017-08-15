@@ -3,7 +3,11 @@
     <title>Growler</title>
 </head>
 <body>
-<div id="growler"></div>
+<div id="growler">
+    <h2>{{ appName }}</h2>
+    <h3 v-once>{{ appName }}</h3>
+
+</div>
 <script type="text/javascript" src="https://unpkg.com/vue"></script>
 <script type="text/javascript" src="https://unpkg.com/axios/dist/axios.min.js"></script>
 <script type="text/javascript">
@@ -15,6 +19,14 @@
             appName: 'Growler'
         }
     });
+    var iteration = 10;
+    var itv = setInterval(function(growler){
+        growler.appName = iteration--;
+        if (iteration == 0){
+            growler.appName = "Timeout!";
+            clearInterval(itv)
+        }}, 1000, growler);
+
 </script>
 </body>
 </html>

@@ -85,6 +85,28 @@ Available via CDN
         String
         Date
         Array
+ 
+ - Binding Text
+    Semantic syntax
+        Use double curly braces {{ ... }} Often reffered as mustaches
+        ```html
+        
+        <h2>Welcome to {{ appName } - {{ appVersion }}</h2> 
+        
+        ```
+    Declarative syntax
+        All baked-in directives begin with "v-"
+        ```html
+        v-text: Interpolation of property value as an HTML element's text
+        <h2 v-text="appName"></h2>
+        ```
+     
+    One-time bindings
+        Improve performance on-time load, skip binding updating watcher
+        ```html
+        <h2 v-once>{{ appName }}</h2>
+        ```
+     
      
      
 == Acronyms
@@ -94,3 +116,7 @@ Available via CDN
  - HTTP: 
  - POJO: Plain Old JavaScript Object
  
+ 
+== Related Course:
+  
+ - https://github.com/ecofic/course-vue-getting-started
