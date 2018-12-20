@@ -95,7 +95,7 @@ Available via CDN
         Use double curly braces {{ ... }} Often reffered as mustaches
 ```html
 
-<h2>Welcome to {{ appName } - {{ appVersion }}</h2> 
+<h2>Welcome to {{ appName }} - {{ appVersion }}</h2> 
 
 ```
     Declarative syntax

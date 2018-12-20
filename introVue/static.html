@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+
+Hello, Vue!
+
+
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width" , initial-scale="1">
+
+    <script src="js/intro.js"></script>
+    <link rel="stylesheet" href="https://cdn.rawgit.com/jgthms/minireset.css/master/minireset.css">
+    <link rel="stylesheet" href="css/debug.css">
+    <!-- google font -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,500,700,900">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+
+    <style>
+        /* resets */
+        * {
+            color: inherit;
+        }
+
+        input {
+            font: inherit;
+            border: unset;
+            background: unset;
+        }
+
+        input:focus {
+            outline: unset;
+        }
+
+        :root {
+            font: 1rem/1.175 "BlinkMacSystemFont", -apple-system, "Roboto", sans-seri;
+        }
+
+        #app {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width: 100vw;
+            height: 100vh;
+            font-weight: 900;
+            font-size: 8rem;
+            color: hsl(0, 0%, 100%);
+            background: hsl(240, 100%, 67%);
+        }
+
+        input {
+            text-align: center;
+        }
+
+        img {
+            width: 8rem;
+            height: 8rem;
+            vertical-align: calc(-0.12109375em);
+        }
+
+    </style>
+</head>
+<body>
+
+<div id="app">
+    <p>hello, world!</p>
+
+    <!--workflow within html-->
+    <p
+            v-for="wizard in wizards()"
+            v-html="wizard.name + ' ' + wizard.pet"
+    ></p>
+    <!--components-->
+    <wizard :name="harry" :cast="oculus_reparo">inner html</wizard>
+
+</div>
+
+<script>
+
+    "use strict";
+
+    // emojify returns the corresponding emoji image
+    function emojify(name) {
+        var out = `<img src="emojis/` + name + `.png"/>`;
+        return out
+    }
+
+    // cast returns a spell (function) that decorates the wizard
+    function cast(emoji) {
+        if (!emoji) {
+            emoji = "¯\\_(ツ)_/¯"
+        }
+        return function (wizard) {
+            return emoji + wizard + emoji
+        }
+    }
+
+
+    Vue.component("wizard", {
+        props: ["name", "cast"],
+        template: `<p v-html="cast(name)"><slot></slot></p>`
+    }); // components accepts property as input
+
+
+    var app = new Vue({
+        el: "#app",
+        data: {
+            wizard: "",
+            harry: emojify("harry"),
+            hedwig: emojify("hedwig"),
+            ron: emojify("ron"),
+            scabbers: emojify("scabbers"),
+            hermione: emojify("hermione"),
+            crookshanks: emojify("crookshanks")
+        },
+        methods: {
+            wizards: function () {
+                return [
+                    {name: this.harry, pet: this.hedwig},
+                    {name: this.ron, pet: this.scabbers},
+                    {name: this.hermione, pet: this.crookshanks}
+                ]
+            },
+            // oculus_reparo returns a spell (function) that repairs glasses
+            oculus_reparo: cast(emojify("oculus-reparo")),
+            // wingardium_leviosa returns a spell (function) that levitates an object
+            wingardium_leviosa:
+                cast(emojify("wingardium-leviosa")),
+            // alohomora returns a spell (function) that unlocks a door
+            alohomora:
+                cast(emojify("alohomora"))
+
+        }
+    })
+
+
+</script>
+
+
+</body>
+
+</html>
